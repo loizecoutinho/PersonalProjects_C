@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rock-paper-win-game</title>
+    <meta name="description" content="Lovable Generated Project" />
+    <meta name="author" content="Lovable" />
+
+    <meta property="og:title" content="rock-paper-win-game" />
+    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!DOCTYPE html>
+    <html lang="pt-br">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Rock Paper Scissors Game</title>
+        <meta name="description" content="Rock Paper Scissors Game" />
+        <meta name="author" content="Lovable" />
+    
+        <style>
+          /* Base Styles */
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+    
+          body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1A1F2C, #252A37);
+            color: white;
+            min-height: 100vh;
+          }
+    
+          .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+          }
+    
+          h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+          }
+    
+          .game {
+            padding: 1rem;
+          }
+    
+          /* Score Board */
+          .score-board {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin: 1.5rem 0;
+            background-color: #1a1a24;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+          }
+    
+          .score {
+            text-align: center;
+          }
+    
+          .score h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          }
+    
+          .score .score-value {
+            font-size: 2.25rem;
+            font-weight: 700;
+          }
+    
+          .player-score {
+            color: #FF1B7B;
+          }
+    
+          .computer-score {
+            color: #1ABC9C;
+          }
+    
+          /* Game Buttons */
+          .game-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+          }
+    
+          .game-button {
+            background-color: #FF1B7B;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+          }
+    
+          .game-button:hover {
+            background-color: #1ABC9C;
+            transform: translateY(-2px);
+          }
+    
+          .game-button:active {
+            transform: translateY(0);
+          }
+    
+          .game-button span {
+            font-size: 1.5rem;
+          }
+    
+          /* Message and Game Result */
+          .message {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            min-height: 2rem;
+          }
+    
+          .game-result {
+            background-color: rgba(26, 26, 36, 0.6);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 1.5rem 0;
+            animation: fadeIn 0.5s ease-out;
+          }
+    
+          .choice-display {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+          }
+    
+          .choice {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+          }
+    
+          .choice-emoji {
+            font-size: 3rem;
+            animation: bounce 2s infinite ease-in-out;
+          }
+    
+          .result-message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+          }
+    
+          .win {
+            color: #1ABC9C;
+          }
+    
+          .lose {
+            color: #FF1B7B;
+          }
+    
+          .draw {
+            color: #f1c40f;
+          }
+    
+          /* Animations */
+          @keyframes fadeIn {
+            0% {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+    
+          @keyframes bounce {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
+          }
+    
+          /* Responsive */
+          @media screen and (max-width: 480px) {
+            .game-buttons {
+              flex-direction: column;
+              align-items: center;
+            }
+            
+            .score-board {
+              gap: 2rem;
+            }
+            
+            .choice-display {
+              flex-direction: column;
+              align-items: center;
+            }
+          }
+        </style>
+      </head>
+    
+      <body>
+        <div class="container">
+          <h1>Pedra, Papel, Tesoura</h1>
+          <div class="game">
+            <!-- Score Board -->
+            <div class="score-board">
+              <div class="score">
+                <h3>Você</h3>
+                <div class="score-value player-score" id="player-score">0</div>
+              </div>
+              
+              <div class="score">
+                <h3>Computador</h3>
+                <div class="score-value computer-score" id="computer-score">0</div>
+              </div>
+            </div>
+    
+            <!-- Game Message -->
+            <div class="message" id="message">Escolha uma opção para começar:</div>
+    
+            <!-- Game Buttons -->
+            <div class="game-buttons">
+              <button class="game-button" onclick="playGame(1)">
+                <span>🪨</span> Pedra
+              </button>
+              <button class="game-button" onclick="playGame(2)">
+                <span>📄</span> Papel
+              </button>
+              <button class="game-button" onclick="playGame(3)">
+                <span>✂️</span> Tesoura
+              </button>
+            </div>
+    
+            <!-- Game Result -->
+            <div class="game-result" id="game-result" style="display: none;"></div>
+          </div>
+        </div>
+    
+        <script>
+          // Game constants
+          const CHOICES = [
+            { id: 1, name: "Pedra", emoji: "🪨" },
+            { id: 2, name: "Papel", emoji: "📄" },
+            { id: 3, name: "Tesoura", emoji: "✂️" }
+          ];
+    
+          // Game state
+          let gameState = {
+            playerScore: 0,
+            computerScore: 0,
+            playerChoice: null,
+            computerChoice: null,
+            result: null
+          };
+    
+          // DOM elements
+          const playerScoreElement = document.getElementById('player-score');
+          const computerScoreElement = document.getElementById('computer-score');
+          const messageElement = document.getElementById('message');
+          const gameResultElement = document.getElementById('game-result');
+    
+          // Get computer choice
+          function getComputerChoice() {
+            return Math.floor(Math.random() * 3) + 1;
+          }
+    
+          // Determine game result
+          function getGameResult(playerChoice, computerChoice) {
+            if (playerChoice === computerChoice) {
+              return 'draw';
+            }
+    
+            const winCondition =
+              (playerChoice === 1 && computerChoice === 3) ||
+              (playerChoice === 2 && computerChoice === 1) ||
+              (playerChoice === 3 && computerChoice === 2);
+    
+            return winCondition ? 'win' : 'lose';
+          }
+    
+          // Get message based on result
+          function getResultMessage(result) {
+            switch (result) {
+              case 'win':
+                return '🎉 Parabéns! Você ganhou!';
+              case 'lose':
+                return '💀 Você perdeu! Tente de novo.';
+              case 'draw':
+                return 'Empate! Tente novamente.';
+            }
+          }
+    
+          // Play the game
+          function playGame(playerChoice) {
+            // Get computer choice
+            const computerChoice = getComputerChoice();
+            
+            // Get result
+            const result = getGameResult(playerChoice, computerChoice);
+            
+            // Update scores
+            if (result === 'win') {
+              gameState.playerScore++;
+            } else if (result === 'lose') {
+              gameState.computerScore++;
+            }
+            
+            // Update game state
+            gameState.playerChoice = playerChoice;
+            gameState.computerChoice = computerChoice;
+            gameState.result = result;
+            
+            // Update UI
+            updateUI();
+          }
+    
+          // Update UI based on game state
+          function updateUI() {
+            // Update scores
+            playerScoreElement.textContent = gameState.playerScore;
+            computerScoreElement.textContent = gameState.computerScore;
+            
+            // Update message
+            const resultMessage = getResultMessage(gameState.result);
+            messageElement.textContent = resultMessage;
+            
+            // Update result display
+            const playerChoice = CHOICES.find(choice => choice.id === gameState.playerChoice);
+            const computerChoice = CHOICES.find(choice => choice.id === gameState.computerChoice);
+            
+            if (playerChoice && computerChoice) {
+              let resultHTML = `
+                <div class="choice-display">
+                  <div class="choice">
+                    <div class="choice-emoji">${playerChoice.emoji}</div>
+                    <div>Você escolheu ${playerChoice.name}</div>
+                  </div>
+                  <div class="choice">
+                    <div class="choice-emoji">${computerChoice.emoji}</div>
+                    <div>Computador escolheu ${computerChoice.name}</div>
+                  </div>
+                </div>
+                <div class="result-message ${gameState.result}">${resultMessage}</div>
+              `;
+              
+              gameResultElement.innerHTML = resultHTML;
+              gameResultElement.style.display = 'block';
+              
+              // Add fade-in animation by removing and re-adding the element
+              gameResultElement.classList.remove('animate-fadeIn');
+              void gameResultElement.offsetWidth; // Trigger reflow
+              gameResultElement.classList.add('animate-fadeIn');
+            }
+          }
+        </script>
+      </body>
+    </html>
